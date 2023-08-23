@@ -1,0 +1,18 @@
+<form [id]="'form' + '-' + input!.field " [formGroup]="form">
+    <ng-container [ngSwitch]="input!.typeInput">
+        <ng-container *ngSwitchCase="'input'">
+            <div class="">
+                <label *ngIf="!input!.additionalProps.isHiddenLabel" class="main-label" [for]="input!.field"
+                    [ngClass]=" input!.additionalProps.isBoldLabel ? 'text-bold' : '' "> {{ input!.label }} </label>
+                <input [type]="input!.additionalProps.typeInput" [formControlName]="input!.field" [id]="input!.field"
+                    [placeholder]="input!.additionalProps.placeholder!" [min]="1" (click)="$event.stopPropagation();"
+                    (keydown)="$event.stopPropagation();">
+
+                <div class="error"
+                    *ngIf="isInvalid(input!.field) && this.input!.additionalProps.messageErrors !== undefined">
+                    {{ messageError }}
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</form>
